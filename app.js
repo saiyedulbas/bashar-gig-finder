@@ -1,34 +1,33 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
-const bodyParser = require('body-parser');
-const path = require('path');
+              const express = require('express');
+                    const exphbs = require('express-handlebars');
+                    const bodyParser = require('body-parser');
+                    const path = require('path');
 
-// Database
-const db = require('./config/database');
+                    // Database
+                  const db = require('./config/database');
 
-// Test DB
-db.authenticate()
-  .then(() => console.log('Database connected...'))
-  .catch(err => console.log('Error: ' + err))
+              // Test DB
+              db.authenticate()
+      const app = express();
 
-const app = express();
+      // Handlebars
+      app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+      app.set('view engine', 'handlebause(bodyParser.urlencoded({ extended: false }));
 
-// Handlebars
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+            // Set static folder
+            app.use(express.static(path.join(__dirname, 'public')));
 
-// Body Parser
-app.use(bodyParser.urlencoded({ extended: false }));
+            // Index routers');
+        app.use('/gigs', require('./routes/gigs'));
 
-// Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+        const PORT = process.env.PORT || 5000;
 
-// Index route
-app.get('/', (req, res) => res.render('index', { layout: 'landing' }));
+        app.listen(PORT, console.log(`Server started on port ${PORT}`));
+      // Body Parser
+        .then(() => console.log('Database connected...'))
+        .catch(err => console.log('Error: ' + err))
 
-// Gig routes
-app.use('/gigs', require('./routes/gigs'));
+            app.
+            app.get('/', (req, res) => res.render('index', { layout: 'landing' }));
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+            // Gig routes
